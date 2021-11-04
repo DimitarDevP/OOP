@@ -5,6 +5,8 @@ class Covek {
     
     public void setName(String name) { this.name = name; }
     public String getName() { return name; }
+    
+    public String toString() { return name; } 
 }
 
 class Ocena {
@@ -21,6 +23,10 @@ class Ocena {
     public int getVrednost() { return vrednost; }
     public String getDatum() { return datum; }
     public String getPredmet() { return predmet; }
+    
+    public String toString() {
+        return datum + " " + predmet + " " + String.valueOf(vrednost);
+    }
 }
 
 class Student extends Covek {
@@ -30,7 +36,11 @@ class Student extends Covek {
     
     public void setIndeks(String indeks) { this.indeks = indeks; }
     public String getIndeks() { return indeks; }
-    public void setOcena(Ocena o) { oceni[num] = o; num++; }
+    public void setOcena(Ocena o) { 
+        System.out.println("Vmetnata ocena: " + o.toString());
+        oceni[num] = o; 
+        num++;
+    }
     
     public float getProsek(){
         int total = 0;
@@ -39,6 +49,10 @@ class Student extends Covek {
         }
         return (float) total / num;
     }
+    
+    public String toString() {
+        return this.getName() + " " + indeks + " " + String.valueOf(getProsek());
+    }
 }
 
 public class Main
@@ -46,15 +60,16 @@ public class Main
 	public static void main(String[] args) {
 		Student dimitar = new Student();
 		dimitar.setIndeks("INKI760");
+		dimitar.setName("Dimitar Veljanovski");
 		
 		Ocena oop = new Ocena();
 		oop.setOcena(10, "2021-11-04 15:12:32", "Objektno Orientirano Programiranje");
 		dimitar.setOcena(oop);
 		
 		Ocena sp = new Ocena();
-		sp.setOcena(9, "2021-11-04 15:12:32", "Strukturno Programiranje");
+		sp.setOcena(9, "2021-11-01 10:22:05", "Strukturno Programiranje");
 		dimitar.setOcena(sp);
 		
-		System.out.print(dimitar.getProsek());		
+		System.out.println(dimitar.toString());
 	}
 }
